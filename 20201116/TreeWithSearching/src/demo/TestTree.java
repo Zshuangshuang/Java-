@@ -15,7 +15,7 @@ class Node{
     public Node(int key) {
         this.key = key;
     }
-public class TestTree {
+public static class TestTree {
         public Node root = null;
         //查找元素：类似于二分查找
         public Node find(int key){
@@ -74,5 +74,96 @@ public class TestTree {
             return true;
         }
 
+     public boolean remove(int key){
+            if (root == null){
+                return false;
+            }
+            Node cur = root;
+            Node parent = null;
+            if (key < cur.key){
+                parent = cur;
+                cur = cur.left;
+            }else if (key > cur.key){
+                parent = cur;
+                cur= cur.right;
+            }else {
+                removeNode(parent,cur);
+                return true;
+            }
+            return false;
+     }
+
+    private void removeNode(Node cur, Node parent) {
+            //1、如果当前要删除的元素没有左子树
+            if (cur.left == null){
+                //1.1 当前的要删除的节点就是根节点，由于没有左子树，那么只能让根节点指向右子树
+                if (cur == root){
+                   root = cur.right;
+                }else if(cur == parent.left){
+                   parent.left = cur.right;
+                }else {
+                    parent.right = cur.right;
+                }
+            }else if (cur.right == null){
+                if (cur == root){
+                    root = cur.left;
+                }else if(cur == parent.left){
+                    parent.left = cur.left;
+                }else {
+                   parent.right = cur.left;
+                }
+
+            }else {
+                //当前要删除的节点，既有左子树又有右子树。那么先找到右子树中的最小值取替换它
+                Node goatParent = cur;
+                Node scapeGoat = cur.right;
+
+                while(scapeGoat.left != null){
+                    goatParent = scapeGoat;
+                    scapeGoat = scapeGoat.left;
+                }
+                cur.key = scapeGoat.key;
+                if (goatParent.left == scapeGoat){
+                        goatParent.left = scapeGoat.right;
+                }else {
+                    goatParent.right = scapeGoat.right;
+                }
+            }
+    }
+    public void prevOrder(Node root){
+            if (root == null){
+                return;
+            }
+        System.out.print(root.key+" ");
+            prevOrder(root.left);;
+            prevOrder(root.right);
+    }
+    public void inOrder(Node root){
+            if (root == null){
+                return;
+            }
+            inOrder(root.left);
+        System.out.print(root.key+" ");
+        inOrder(root.right);
+    }
+
+
+}
+
+    public static void main(String[] args) {
+        TestTree testTree = new TestTree();
+        testTree.insert(9);
+        testTree.insert(5);
+        testTree.insert(2);
+        testTree.insert(7);
+        testTree.insert(3);
+        testTree.insert(6);
+        testTree.insert(8);
+        /*testTree.inOrder(testTree.root);
+        System.out.println();
+        testTree.prevOrder(testTree.root);*/
+        testTree.remove(5);
+        System.out.println();
+        testTree.inOrder(testTree.root);
     }
 }
