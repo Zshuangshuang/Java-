@@ -35,7 +35,9 @@ public class Main{
         double a = Double.parseDouble(ret[0]);
         double b = Double.parseDouble(ret[1]);
         double c = Double.parseDouble(ret[2]);
-
+        double sum = (a+b+c)*1.0;
+        double avg = (a+b+c)*1.0/3;
+        System.out.printf("%.2f %.2f",sum,avg);
     }
 }
 
