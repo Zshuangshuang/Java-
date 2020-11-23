@@ -9,14 +9,15 @@ import java.util.*;
 
 public class Finder {
     public static Integer findKth(int[] a, int n, int K) {
-        qSort(a);
+
         if (K > n || K < 1){
             return null;
         }
         if (n == 0){
             return null;
         }
-        return a[K];
+        qSort(a);
+        return a[K-1];
 
 
     }
@@ -65,8 +66,8 @@ public class Finder {
 
 
     public static void main(String[] args) {
-        int[] array = {1,3,5,2,2};
-        System.out.println(findKth(array, array.length, 3));
+        int[] array = {3,6,7,2,1};
+        System.out.println(findKth(array, array.length, 2));
     }
 
 }
