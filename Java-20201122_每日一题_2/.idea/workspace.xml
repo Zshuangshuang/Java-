@@ -20,9 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c7ab8a14-86d7-4526-b04b-b28a4d42eab3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Java-20201122_每日一题_2/Finder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Java-20201122_每日一题_2/Finder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Finder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Finder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,6 +99,13 @@
       <updated>1606049573133</updated>
       <workItem from="1606049576095" duration="7845000" />
       <workItem from="1606126818919" duration="1187000" />
+      <workItem from="1606300416070" duration="42000" />
+      <workItem from="1606300592484" duration="53000" />
+      <workItem from="1606300899287" duration="9000" />
+      <workItem from="1606301106139" duration="13000" />
+      <workItem from="1606301129526" duration="124000" />
+      <workItem from="1606301763856" duration="14000" />
+      <workItem from="1606302153294" duration="75000" />
     </task>
     <servers />
   </component>
@@ -117,16 +122,17 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="267" y="25" key="#Inspections" timestamp="1606054753023">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="267" y="25" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1606054753023" />
-    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1606128001208">
+    <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1606300608724">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1606128001208" />
+    <state x="421" y="95" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1606300608724" />
     <state width="1237" height="163" key="GridCell.Tab.0.bottom" timestamp="1606128017999">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -143,9 +149,9 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1237" height="163" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1606128017999" />
-    <state x="28" y="0" key="new project wizard" timestamp="1606128015598">
+    <state x="28" y="0" key="new project wizard" timestamp="1606300643939">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="28" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1606128015598" />
+    <state x="28" y="0" key="new project wizard/0.0.1280.680@0.0.1280.680" timestamp="1606300643939" />
   </component>
 </project>
