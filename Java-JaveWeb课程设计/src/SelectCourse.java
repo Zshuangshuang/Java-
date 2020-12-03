@@ -9,7 +9,7 @@ import java.util.Scanner;
  * Date: 2020-11-26
  * Time: 14:57
  **/
-
+//实现添加新学生
 public class SelectCourse {
     public MyListener myListener ;//监听者对象
     private String courseName;//课程名
@@ -25,6 +25,7 @@ public class SelectCourse {
 
         this.courseName = courseName;
     }
+    //设置最大人数
 
     public void setMaxPeopleNum(int maxPeopleNum) {
         this.maxPeopleNum = maxPeopleNum;
@@ -33,9 +34,7 @@ public class SelectCourse {
     //添加新学生,并返回学生人数
     public int addStudent(String name){
 
-            this.students.add(name);
-
-
+        this.students.add(name);
         currentNum = students.size();
         return currentNum;
     }
