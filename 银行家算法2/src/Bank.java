@@ -72,13 +72,13 @@ public class Bank
             Work.A -= RequestSources.A;
             Work.B -= RequestSources.B;
             Work.C -= RequestSources.C;
-
             //已经做出了资源请求并且改了值，判断是不是存在安全序列
             boolean isExistSafeQueue = true;
             String[] safeQueue = new String[5];
             int index = 0;
             while (true)
             {
+                //find表示标记位
                 boolean find = false;
                 for (int i = 0; i < 5; i++)
                 {
@@ -103,12 +103,9 @@ public class Bank
                             Work.A += processor[i].allocation.A;
                             Work.B += processor[i].allocation.B;
                             Work.C += processor[i].allocation.C;
-
                             processor[i].Finish = true;
-
                             // 安全序列中加入这个进程
                             safeQueue[index++] = "P" + i;
-
                             // 标记find
                             find = true;
                         }
@@ -138,19 +135,15 @@ public class Bank
                     System.out.print(safeQueue[i] + " ");
                 }
                 System.out.println();
-
                 //已经判断能够形成安全序列，表示该进程的资源请求成功，此时不需要改变进程的值只要改变sources的值解
                 sources.A -= RequestSources.A;
                 sources.B -= RequestSources.B;
                 sources.C -= RequestSources.C;
 
-
-
             }
             else
             {
                 System.out.println("不能够对进程进行安全的资源分配");
-
                 //已经判断不能够形成安全序列，表示该进程的资源请求失败，因为之前已经修改了值，所以要改回来
                 processor[RequestProcessorNum].allocation.A -= RequestSources.A;
                 processor[RequestProcessorNum].allocation.B -= RequestSources.B;
