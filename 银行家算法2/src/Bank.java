@@ -6,26 +6,24 @@ public class Bank
 {
     public void BankAlgorithm()
     {
-        //初始化系统已有的资源 + 五个进程的当前信息
+        //初始化系统已有的资源 , 五个进程的当前信息
         // 五个进程对象(输入每个进程对象的名称\所需的最大资源\已分配的资源\还需要的资源)
         Processor processor[] = new Processor[5];
-        processor[0] = new Processor("P0", 7, 5, 3, 0, 3, 0, 7, 2, 3);
-        processor[1] = new Processor("P1", 3, 2, 2, 3, 0, 2, 0, 2, 0);
+        processor[0] = new Processor("P0", 7, 5, 3, 0, 1, 0, 7, 4, 3);
+        processor[1] = new Processor("P1", 3, 2, 2, 2, 0, 0, 1, 2, 2);
         processor[2] = new Processor("P2", 9, 0, 2, 3, 0, 2, 6, 0, 0);
         processor[3] = new Processor("P3", 2, 2, 2, 2, 1, 1, 0, 1, 1);
         processor[4] = new Processor("P4", 4, 3, 3, 0, 0, 2, 4, 3, 1);
 
-
-       /* processor[0] = new Processor("P0", 7, 5, 3, 0, 1, 0, 7, 4, 3);
-        processor[1] = new Processor("P1", 3, 2, 2, 2, 0, 0, 1, 2, 2);
+        /*processor[0] = new Processor("P0", 7, 5, 3, 0, 3, 0, 7, 2, 3);
+        processor[1] = new Processor("P1", 3, 2, 2, 3, 0, 2, 0, 2, 0);
         processor[2] = new Processor("P2", 9, 0, 2, 3, 0, 2, 6, 0, 0);
         processor[3] = new Processor("P3", 2, 2, 2, 2, 1, 1, 0, 1, 1);
         processor[4] = new Processor("P4", 4, 3, 3, 0, 0, 2, 4, 3, 1);
 */
 
-
         // 一个资源对象(表示当系统拥有的资源)
-        Sources sources = new Sources(2, 1, 0);
+        Sources sources = new Sources(3, 3, 2);
 
         System.out.println("当前系统可分配资源为:");
         System.out.println("A: " + sources.A + "\tB: " + sources.B + "\tC: " + sources.C);
@@ -52,17 +50,17 @@ public class Bank
             Sources RequestSources = new Sources(a, b, c);
 
             // 当初始时第一个进程请求完毕后，需要做判断和改值
-            // 1.判断是不是保证请求的每个资源数量是小于等于该进程还需要的资源数量的
+
             if (RequestSources.A > processor[RequestProcessorNum].need.A
                     || RequestSources.B > processor[RequestProcessorNum].need.B
                     || RequestSources.C > processor[RequestProcessorNum].need.C) {
-                System.out.println("出现错误: 请求的资源超过了该进程所需要的资源");
+                System.out.println(" 请求的资源超过了该进程所需要的资源");
                 System.out.println("退出系统");
                 System.exit(-1);
             }
-            // 2.判断请求的资源是不是小于等于当前所拥有的资源
+
             if (RequestSources.A > sources.A || RequestSources.B > sources.B || RequestSources.C > sources.C) {
-                System.out.println("出现错误: 请求的资源超过了系统此时拥有的资源");
+                System.out.println("请求的资源超过了系统此时拥有的资源");
                 System.out.println("退出");
                 System.exit(-1);
             }
@@ -71,15 +69,15 @@ public class Bank
             Sources Work = new Sources(3,3,2);
 
             //因为已经有进程请求了分配资源，假设可以进行这次的资源请求，所以需要改值
-            //理论上请求后：当前进程的已分配资源数 = 已分配资源数+请求资源数
+
             processor[RequestProcessorNum].allocation.A += RequestSources.A;
             processor[RequestProcessorNum].allocation.B += RequestSources.B;
             processor[RequestProcessorNum].allocation.C += RequestSources.C;
-            //理论上，请求后：当前进程的资源需求数=资源需求数-请求资源数
+
             processor[RequestProcessorNum].need.A -= RequestSources.A;
             processor[RequestProcessorNum].need.B -= RequestSources.B;
             processor[RequestProcessorNum].need.C -= RequestSources.C;
-            //理论上，请求后：系统资源数量=系统资源数量-请求资源数
+
             Work.A -= RequestSources.A;
             Work.B -= RequestSources.B;
             Work.C -= RequestSources.C;
@@ -95,7 +93,8 @@ public class Bank
                 {
                     if (processor[i].Finish == false)// 该进程没有分配资源
                     {
-                        boolean flag = true;// 看系统当前资源是不是>=该进程需要的资源
+                        boolean flag = true;
+                        // 看系统当前资源是不是>=该进程需要的资源
                         if (Work.A < processor[i].need.A)
                         {
                             flag = false;
@@ -126,11 +125,12 @@ public class Bank
                 if (find == false)
                 {
                     for (int i = 0; i < 5; i++)
+
                     {
                         if (processor[i].Finish == false)
                         {
                             isSafeQueue = false;
-                            System.out.println("出现进程之间的死锁");
+                            System.out.println("当前进程不安全");
                             break;
                         }
                     }
