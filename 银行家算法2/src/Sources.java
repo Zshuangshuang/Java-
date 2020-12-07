@@ -16,10 +16,9 @@ public class Sources {
 
     @Override
     public String toString() {
-        return "Sources{" +
-                "A=" + A +
-                ", B=" + B +
-                ", C=" + C +
-                '}';
+        {
+            //打印出资源信息
+            return A+" "+B+" "+C;
+        }
     }
 }

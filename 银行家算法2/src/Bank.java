@@ -6,22 +6,30 @@ public class Bank
 {
     public void BankAlgorithm()
     {
-        /** 初始化系统已有的资源 + 五个进程的当前信息 */
+        //初始化系统已有的资源 + 五个进程的当前信息
         // 五个进程对象(输入每个进程对象的名称\所需的最大资源\已分配的资源\还需要的资源)
         Processor processor[] = new Processor[5];
-        processor[0] = new Processor("P0", 7, 5, 3, 0, 1, 0, 7, 4, 3);
-        processor[1] = new Processor("P1", 3, 2, 2, 2, 0, 0, 1, 2, 2);
+        processor[0] = new Processor("P0", 7, 5, 3, 0, 3, 0, 7, 2, 3);
+        processor[1] = new Processor("P1", 3, 2, 2, 3, 0, 2, 0, 2, 0);
         processor[2] = new Processor("P2", 9, 0, 2, 3, 0, 2, 6, 0, 0);
         processor[3] = new Processor("P3", 2, 2, 2, 2, 1, 1, 0, 1, 1);
         processor[4] = new Processor("P4", 4, 3, 3, 0, 0, 2, 4, 3, 1);
 
 
+       /* processor[0] = new Processor("P0", 7, 5, 3, 0, 1, 0, 7, 4, 3);
+        processor[1] = new Processor("P1", 3, 2, 2, 2, 0, 0, 1, 2, 2);
+        processor[2] = new Processor("P2", 9, 0, 2, 3, 0, 2, 6, 0, 0);
+        processor[3] = new Processor("P3", 2, 2, 2, 2, 1, 1, 0, 1, 1);
+        processor[4] = new Processor("P4", 4, 3, 3, 0, 0, 2, 4, 3, 1);
+*/
+
 
         // 一个资源对象(表示当系统拥有的资源)
-        Sources sources = new Sources(3, 3, 2);
+        Sources sources = new Sources(2, 1, 0);
 
         System.out.println("当前系统可分配资源为:");
         System.out.println("A: " + sources.A + "\tB: " + sources.B + "\tC: " + sources.C);
+        //输出显示当前进程的信息
         for (int i = 0; i < 5; i++)
         {
             processor[i].ShowProcessor();
@@ -59,21 +67,24 @@ public class Bank
                 System.exit(-1);
             }
 
-            // 工作资源(实时记录当前系统资源数量)
+            // 实时记录当前系统资源数量
             Sources Work = new Sources(3,3,2);
 
             //因为已经有进程请求了分配资源，假设可以进行这次的资源请求，所以需要改值
+            //理论上请求后：当前进程的已分配资源数 = 已分配资源数+请求资源数
             processor[RequestProcessorNum].allocation.A += RequestSources.A;
             processor[RequestProcessorNum].allocation.B += RequestSources.B;
             processor[RequestProcessorNum].allocation.C += RequestSources.C;
+            //理论上，请求后：当前进程的资源需求数=资源需求数-请求资源数
             processor[RequestProcessorNum].need.A -= RequestSources.A;
             processor[RequestProcessorNum].need.B -= RequestSources.B;
             processor[RequestProcessorNum].need.C -= RequestSources.C;
+            //理论上，请求后：系统资源数量=系统资源数量-请求资源数
             Work.A -= RequestSources.A;
             Work.B -= RequestSources.B;
             Work.C -= RequestSources.C;
             //已经做出了资源请求并且改了值，判断是不是存在安全序列
-            boolean isExistSafeQueue = true;
+            boolean isSafeQueue = true;
             String[] safeQueue = new String[5];
             int index = 0;
             while (true)
@@ -99,7 +110,7 @@ public class Bank
                         }
                         if (flag == true)
                         {
-                            // 满足三个资源的条件，可以进行资源的分配，当前系统的资源要+上该进程释放的资源
+                            // 满足三个资源的条件，可以进行资源的分配，当前系统的资源要+该进程释放的资源
                             Work.A += processor[i].allocation.A;
                             Work.B += processor[i].allocation.B;
                             Work.C += processor[i].allocation.C;
@@ -111,13 +122,14 @@ public class Bank
                         }
                     }
                 }
+                //资源不足，进程不安全
                 if (find == false)
                 {
                     for (int i = 0; i < 5; i++)
                     {
                         if (processor[i].Finish == false)
                         {
-                            isExistSafeQueue = false;
+                            isSafeQueue = false;
                             System.out.println("出现进程之间的死锁");
                             break;
                         }
@@ -126,7 +138,7 @@ public class Bank
                 }
             }
             // 如果存在安全序列
-            if (isExistSafeQueue == true)
+            if (isSafeQueue == true)
             {
                 System.out.println("能够对进程安全分配资源");
                 System.out.println("安全序列如下:");
@@ -135,7 +147,7 @@ public class Bank
                     System.out.print(safeQueue[i] + " ");
                 }
                 System.out.println();
-                //已经判断能够形成安全序列，表示该进程的资源请求成功，此时不需要改变进程的值只要改变sources的值解
+                //已经判断能够形成安全序列，表示该进程的资源请求成功，此时不需要改变进程的值只要改变sources的值
                 sources.A -= RequestSources.A;
                 sources.B -= RequestSources.B;
                 sources.C -= RequestSources.C;
