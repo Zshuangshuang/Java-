@@ -1,6 +1,5 @@
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -10,7 +9,7 @@ import java.util.List;
  * Date: 2020-12-12
  * Time: 17:29
  **/
-public class Test {
+public class TestFS {
     public static void main(String[] args) {
         //建立Process类型的集合类
         List<Process> list = new ArrayList<>();
@@ -23,7 +22,7 @@ public class Test {
         list.add(p3);
         list.add(p4);
         //实例化调度算法对象
-        Dispatcher dispatcher = new FirCFirS(list);
+        DispatcherWithFs dispatcher = new FirCFirS(list);
         dispatcher.solve(list);
     }
 }

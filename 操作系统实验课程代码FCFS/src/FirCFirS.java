@@ -7,7 +7,7 @@ import java.util.List;
  * Date: 2020-12-12
  * Time: 17:11
  **/
-public class FirCFirS implements Dispatcher,CalData{
+public class FirCFirS implements DispatcherWithFs, CalDataFs {
 
     private List<Process> list;//定义要操作的进程对象集合
     private int processCount;//进程数量

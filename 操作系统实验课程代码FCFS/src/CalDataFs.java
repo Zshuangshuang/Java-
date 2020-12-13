@@ -8,7 +8,7 @@ import javax.sql.DataSource;
  * Time: 17:04
  **/
 //数据处理的接口
-public interface CalData {
+public interface CalDataFs {
     //得到开始时间
      Integer startTime(Process process);
     //得到结束时间
