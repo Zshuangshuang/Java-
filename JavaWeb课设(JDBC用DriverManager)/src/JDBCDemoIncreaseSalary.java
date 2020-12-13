@@ -14,7 +14,7 @@ public class JDBCDemoIncreaseSalary {
         Connection connection = DriverManager.getConnection("jdbc:mysql:///test","root","261919Zss");
         //创建statement对象，执行sql语句
         Statement statement = connection.createStatement();
-        //查询年龄大于45岁的sql语句
+        //修改年龄大于45岁的sql语句
         String sql1 = " update worker set salary=(salary*0.15)+salary where age > 45";
         //执行sql语句
         statement.executeUpdate(sql1);
