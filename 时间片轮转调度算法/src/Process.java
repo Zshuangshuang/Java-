@@ -6,14 +6,14 @@
  * Time: 20:42
  **/
 public class Process {
-    private int arrivalTime;
-    private int servicesTime;
-    private int remainServiceTime;
-    private int startTime;
-    private int waitTime;
-    private int completionTime;
-    private int turnAroundTime;
-    private double turnAroundTimeWithWeight;
+    private int arrivalTime;//进程的到达时间
+    private int servicesTime;//进程的预计执行时间
+    private int remainServiceTime;//进程还要服务的时间
+    private int startTime;//开始时间
+    private int waitTime;//等待时间
+    private int finishTime;//完成时间
+    private int turnAroundTime;//周转时间
+    private double turnAroundTimeWithWeight;//带权周转时间
 
     public Process() {
     }
@@ -58,12 +58,12 @@ public class Process {
         this.waitTime = waitTime;
     }
 
-    public int getCompletionTime() {
-        return completionTime;
+    public int getFinishTime() {
+        return finishTime;
     }
 
-    public void setCompletionTime(int completionTime) {
-        this.completionTime = completionTime;
+    public void setFinishTime(int finishTime) {
+        this.finishTime = finishTime;
     }
 
     public int getTurnAroundTime() {
@@ -90,7 +90,7 @@ public class Process {
                 ", remainServiceTime=" + remainServiceTime +
                 ", startTime=" + startTime +
                 ", waitTime=" + waitTime +
-                ", completionTime=" + completionTime +
+                ", finishTime=" + finishTime +
                 ", turnAroundTime=" + turnAroundTime +
                 ", turnAroundTimeWithWeight=" + turnAroundTimeWithWeight +
                 '}';
